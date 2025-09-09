@@ -1,0 +1,23 @@
+version: 2
+
+sources:
+  - name: RAW
+    database: NFL_DEV
+    schema: RAW
+    tables:
+      - name: pbp_data
+      - name: qbr_season_data
+      - name: qbr_weekly_data
+      - name: rosters_season_data
+      - name: rosters_weekly_data
+      - name: sc_lines_data
+      - name: schedules_data
+      - name: season_aggregates_data
+      - name: snap_counts_data
+      - name: weekly_data
+      - name: win_totals_data
+      - name: combine_data
+      - name: depth_charts_data
+      - name: draft_picks_data
+      - name: injuries_data
+      - name: officials_data
