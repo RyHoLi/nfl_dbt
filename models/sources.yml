@@ -21,3 +21,7 @@ sources:
       - name: draft_picks_data
       - name: injuries_data
       - name: officials_data
+      - name: contracts_data
+      - name: draft_values_data
+      - name: ids_data
+      - name: team_desc_data
