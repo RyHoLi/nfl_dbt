@@ -175,7 +175,7 @@ select
     CAST(lateral_rush AS INTEGER)                          as lateral_rush,
     CAST(lateral_return AS INTEGER)                        as lateral_return,
     CAST(lateral_recovery AS INTEGER)                      as lateral_recovery,
-    CAST(passer_player_id AS INTEGER)                      as passer_player_id,
+    passer_player_id,
     passer_player_name,
     CAST(passing_yards AS INTEGER)                         as passing_yards,
     receiver_player_id,
@@ -361,11 +361,9 @@ select
     passer_id,
     rusher_id,
     receiver_id,
-
     NAME                                                      as player_name,
     jersey_number,
     ID                                                        as player_id,
-
     fantasy_player_name,
     fantasy_player_id,
     fantasy,
