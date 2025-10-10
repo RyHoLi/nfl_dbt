@@ -2,8 +2,8 @@
 
 with schedule AS (
     SELECT
-        CASE WHEN k.posteam = home_team THEN away_team
-             ELSE home_team
+        CASE WHEN k.posteam = s.home_team THEN s.away_team
+             ELSE s.home_team
              END AS def_team,
         k.game_id,
         k.week,
