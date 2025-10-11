@@ -10,7 +10,7 @@ with schedule_week as (
         CASE WHEN roof IN ('open', 'outdoors') THEN 1 ELSE 0 END AS outdoor_game
     from {{ ref('schedule')}}
     where season = 2025
-        and week   = 5
+        and week   = 6
     UNION
     SELECT game_id, week, season, away_team as posteam, spread_line * 1 as spread, 0 as home,
     total_line, 
@@ -21,13 +21,13 @@ with schedule_week as (
         CASE WHEN roof IN ('open', 'outdoors') THEN 1 ELSE 0 END AS outdoor_game
     from {{ ref('schedule')}}
     where season = 2025
-        and week   = 5
+        and week   = 6
 ),
 predict_scoring_table as (
   select *
   from {{ ref('predict_kicker_scoring') }}
   where season = 2025
-    and week   = 4     -- lagged stats up through week 4
+    and week   = 5     -- lagged stats up through week 4
 )
 
 select
@@ -38,7 +38,7 @@ select
   s.posteam,
   s.home as home_flag,
   a.season,
-  5 as week,          -- prediction week
+  6 as week,          -- prediction week
   s.spread,
   s.total_line,
   s.temp,
