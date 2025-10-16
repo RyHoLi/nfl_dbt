@@ -11,9 +11,9 @@ fg_xp AS (
     game_id, season, week, posteam, defteam,
     SUM(fga_0_39)    AS fga_0_39_allowed,
     SUM(fga_40_49)   AS fga_40_49_allowed,
-    SUM(fga_50_plus) AS fga_50_plus_allowed,
-    SUM(xpa)         AS xpa_allowed,
-  FROM {{ ref('core_kicking_plays') }}
+    SUM(fga_50) AS fga_50_plus_allowed,
+    SUM(extra_point_attempts)         AS xpa_allowed,
+  FROM {{ ref('kicker_weekly') }}
   GROUP BY 1,2,3,4,5
 ),
 
@@ -38,10 +38,8 @@ pass_rush_allowed AS (
 
 opp_k_fpts AS (
   SELECT
-    k.game_id, k.season, k.week, k.defteam,
-    {{ k_fantasy_points('SUM(k.fgm_0_39)','SUM(k.fgm_40_49)','SUM(k.fgm_50_plus)','SUM(k.xpm)','SUM(k.xpa)') }} AS opponent_kicker_fpts_allowed
-  FROM {{ ref('core_kicking_plays') }} k
-  GROUP BY 1,2,3,4
+    k.game_id, k.season, k.week, k.defteam, fantasy_pts AS opponent_kicker_fpts_allowed
+  FROM {{ ref('kicker_weekly') }} k
 ),
 
 assemble AS (
