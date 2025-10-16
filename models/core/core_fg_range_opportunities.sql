@@ -12,8 +12,8 @@ drive_flags AS (
     game_id, season, week, posteam, defteam, drive,
     MAX(in_fg_range)  AS reached_fg_range,
     MAX(in_redzone)   AS reached_redzone,
-    SUM(CASE WHEN down = 4 AND in_fg_range = 1 AND play_type != 'field_goal' THEN 1 ELSE 0 END) AS fourth_down_attempt_in_fg_range,
-    SUM(CASE WHEN down = 4 AND in_redzone  = 1 AND play_type != 'field_goal' THEN 1 ELSE 0 END) AS fourth_down_attempt_in_redzone,
+    SUM(CASE WHEN down = 4 AND in_fg_range = 1 AND play_type NOT IN ('field_goal', 'punt', 'no_play', 'qb_spike', 'qb_kneel') THEN 1 ELSE 0 END) AS fourth_down_attempt_in_fg_range,
+    SUM(CASE WHEN down = 4 AND in_redzone  = 1 AND play_type NOT IN ('field_goal', 'punt', 'no_play', 'qb_spike', 'qb_kneel') THEN 1 ELSE 0 END) AS fourth_down_attempt_in_redzone,
     SUM(CASE WHEN down = 4 AND in_fg_range  = 1 THEN 1 ELSE 0 END) AS fourth_down_fg_range_opp,
     SUM(CASE WHEN down = 4 AND in_redzone  = 1 THEN 1 ELSE 0 END) AS fourth_down_redzone_opp,
     -- Red zone TD rate: 1 if drive reached redzone and had a touchdown, else 0

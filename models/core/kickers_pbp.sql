@@ -47,4 +47,4 @@ select
     cast(kickoff_in_endzone as integer) as kickoff_in_endzone
 from src
 where
-    (play_type in ('field_goal', 'extra_point', 'kickoff') or kicker_player_id is not null)
+    (play_type in ('field_goal', 'extra_point') or kicker_player_id is not null)

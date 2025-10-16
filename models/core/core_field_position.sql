@@ -24,10 +24,10 @@ pos AS (
     -- Potential FG distance approximation
     (yardline_100_num + 17) AS est_fg_distance,
     -- Zones
-    CASE WHEN yardline_100_num <= 20 AND DOWN IS NOT NULL THEN 1 ELSE 0 END AS in_redzone,
-    CASE WHEN yardline_100_num BETWEEN 1 AND 48 AND DOWN IS NOT NULL THEN 1 ELSE 0 END AS in_fg_range,
-    CASE WHEN yardline_100_num BETWEEN 1 AND 48 AND down = 4 AND play_type IN ('run', 'pass') and ydstogo <=5 THEN 1 END AS fringe_go,
-    CASE WHEN yardline_100_num BETWEEN 1 AND 48 AND down = 4 AND ydstogo <=5 THEN 1 END AS fringe_situations
+    CASE WHEN yardline_100_num <= 20 AND DOWN IN (1,2,3,4) THEN 1 ELSE 0 END AS in_redzone,
+    CASE WHEN yardline_100_num BETWEEN 1 AND 44 AND DOWN IN (1,2,3,4) THEN 1 ELSE 0 END AS in_fg_range,
+    CASE WHEN yardline_100_num BETWEEN 1 AND 44 AND down = 4 AND play_type IN ('run', 'pass') and ydstogo <=3 THEN 1 END AS fringe_go,
+    CASE WHEN yardline_100_num BETWEEN 1 AND 44 AND down = 4 AND ydstogo <=3 THEN 1 END AS fringe_situations
   FROM base
 )
 

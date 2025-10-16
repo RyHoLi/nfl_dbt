@@ -20,6 +20,8 @@ with schedule AS (
              WHEN field_goal_attempt = 1 AND field_goal_made = 1 AND field_goal_distance BETWEEN 40 and 49 THEN 4
              WHEN field_goal_attempt = 1 AND field_goal_made = 1 AND field_goal_distance >= 50 THEN 5
              WHEN extra_point_attempt = 1 AND extra_point_made = 1 THEN 1
+             WHEN field_goal_attempt = 1 AND field_goal_made = 0 THEN -1
+             WHEN extra_point_attempt = 1 AND extra_point_made = 0 THEN -1
              ELSE 0 END AS fantasy_pts
     FROM {{ ref('kickers_pbp') }}
     WHERE play_type IN ('field_goal', 'extra_point')
